@@ -1,3 +1,4 @@
+import "./Profile.css";
 import axios from "axios";
 
 interface User {
@@ -31,22 +32,36 @@ async function getUsersData(example: string): Promise<UserResponse | null> {
 const allUsersData = await getUsersData("all");
 
 allUsersData?.items.forEach((Element) => {
-  console.log(Element)
-})
+  console.log(Element);
+});
 
 const Profile: React.FC = () => {
   return (
-    <>
-      {allUsersData?.items.map((element: User, index: number) => {
-        const avatar:string = `${element.avatarUrl}&random=\${${index}}`
-          return (
-            <div key={index} className="profile">
-              <img src={avatar} alt={`Фотография ${element.firstName} ${element.lastName}`} className="profile_img"/>
-              <div>{element.lastName}</div>
+    <div className="profiles">
+      {allUsersData?.items.map((user: User, index: number) => {
+        const avatarUrl = user.avatarUrl;
+        const avatar: string = `${user.avatarUrl}&random=\${${index}}`;
+        const fullname: string = user.firstName + " " + user.lastName;
+        const tag: string = user.userTag
+        const position: string = user.position.charAt(0).toUpperCase() + user.position.slice(1);
+        return (
+          <div key={index} className="profiles__item">
+            <img
+              src={avatarUrl}
+              alt={`Фотография ${fullname}`}
+              className="profiles__img"
+            />
+            <div className="profiles__wrapper">
+              <div className="profiles__inner">
+                <div className="profiles__fullname">{fullname}</div>
+                <div className="profiles__tag">{tag}</div>
+              </div>
+              <div className="profiles__position">{position}</div>
             </div>
-          )
+          </div>
+        );
       })}
-    </>
+    </div>
   );
 };
 

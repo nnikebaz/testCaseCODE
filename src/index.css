@@ -2,9 +2,6 @@ html {
   font-size: 62.5%;
 }
 
-body {
-}
-
 input {
   border: none;
   background-color: unset;
@@ -29,9 +26,16 @@ hr {
 :root {
   padding: 4rem 2rem;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  --input-color: #C3C3C6;
+  --color-input: #C3C3C6;
   --font-size-header: 1.5rem;
-  --tabs-color: #97979B;
-  --medium: 500;
+  --font-size-profile-name: 1.6rem;
+  --font-size-position: 1.3rem;
+  --font-size-tag: 1.4rem;
+  --color-tabs: #97979B;
+  --color-accent :#6534FF;
+  --color-position: #55555C;
+  --color-fullname: #050510;
+  --font-weight-medium: 500;
+  --font-weight-regular: 400;
 }
 

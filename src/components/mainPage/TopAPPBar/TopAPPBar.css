@@ -1,5 +1,6 @@
 .TopAPPBar {
   width: 100%;
+  margin-bottom: 2.6rem;
 }
 
 .TopAPPBar input {
@@ -8,7 +9,7 @@
 }
 
 .TopAPPBar input::placeholder {
-  color: var(--input-color);
+  color: var(--color-input);
 }
 
 .navigation {
@@ -24,18 +25,41 @@
 
 .tabs {
   display: flex;
-  overflow: hidden;
-
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .tabs ul {
+  cursor: pointer;
   padding: .8rem 1.2rem;
   font-size: var(--font-size-header);
-  font-weight: var(--medium);
-  color: var(--tabs-color);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-tabs);
+}
+
+.tab.active {
+  position: relative;
+  color: black;
+}
+
+.tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-accent);
+}
+
+.menu.active path{
+  fill: var(--color-accent);
 }
 
 hr {
   height: .5px;
-  background-color: var(--input-color);
+  background-color: var(--color-input);
 }

@@ -1,4 +1,3 @@
-import { ReactElement } from 'react'
 import './MainPage.css'
 import TopAPPBar from './TopAPPBar/TopAPPBar'
 import Profile from './Profile/Profile'

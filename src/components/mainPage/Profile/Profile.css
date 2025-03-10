@@ -1,0 +1,40 @@
+.profiles {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.profiles__inner {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+
+.profiles__item {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.profiles__img {
+  border-radius: 100%;
+  width: 72px;
+  aspect-ratio: 1 / 1;
+}
+
+.profiles__fullname {
+  font-size: var(--font-size-profile-name);
+  color: var(--color-fullname);
+  font-weight: var(--font-weight-medium);
+}
+
+.profiles__tag {
+  font-size: var(--font-size-tag);
+  color: var(--color-tabs);
+}
+
+.profiles__position {
+  color: var(--color-position);
+  font-size: var(--font-size-position);
+  font-weight: var(--font-weight-regular);
+}

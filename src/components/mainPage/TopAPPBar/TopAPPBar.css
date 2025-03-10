@@ -1,0 +1,41 @@
+.TopAPPBar {
+  width: 100%;
+}
+
+.TopAPPBar input {
+  font-size: var(--font-size-header);
+  width: 100%;
+}
+
+.TopAPPBar input::placeholder {
+  color: var(--input-color);
+}
+
+.navigation {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  background-color: #F7F7F8;
+  padding: 1rem 2rem;
+  border-radius: 1.6rem;
+  width: 100%;
+  margin-bottom: 1.4rem;
+}
+
+.tabs {
+  display: flex;
+  overflow: hidden;
+
+}
+
+.tabs ul {
+  padding: .8rem 1.2rem;
+  font-size: var(--font-size-header);
+  font-weight: var(--medium);
+  color: var(--tabs-color);
+}
+
+hr {
+  height: .5px;
+  background-color: var(--input-color);
+}

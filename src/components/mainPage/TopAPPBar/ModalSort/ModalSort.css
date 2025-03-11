@@ -1,0 +1,101 @@
+.ModalSort {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-color-light);
+  width: 100%;
+  height: 50vh;
+}
+
+.ModalSort__top {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.ModalSort__icon-back {
+  position: absolute;
+  left: 0;
+  top: 25%;
+}
+
+.ModalSort__item {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+}
+
+.ModalSort__item input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.ModalSort__item label {
+  display: block;
+  position: relative;
+  padding-left: 3.5rem;
+  margin-bottom: 2rem;
+  cursor: pointer;
+  font-size: var(--font-size-profile-name);;
+  user-select: none;
+}
+
+.ModalSort__item span {
+  position: absolute;
+  top: .2rem;
+  left: 0;
+  height: 20px;
+  aspect-ratio: 1 / 1;
+  background-color: var(--color-accent);
+  border-radius: 50%;
+}
+
+.ModalSort__item label input:checked ~ span {
+  background-color: var(--color-accent);
+}
+
+.ModalSort__item span:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.ModalSort__item span:before {
+  content: "";
+  position: absolute;
+  display: block;
+}
+
+.ModalSort__item label span::before {
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: white;
+}
+
+.ModalSort__item label input:checked ~ span::before {
+  display: none;
+}
+
+.ModalSort__item label input:checked ~ span:after {
+  display: block;
+}
+
+.ModalSort__item label span:after {
+  top: 6px;
+  left: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+}
+
+
+.ModalSort__header {
+  text-align: center;
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-semibold);
+}

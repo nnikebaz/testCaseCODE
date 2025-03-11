@@ -1,19 +1,17 @@
 import { useState } from "react";
 import "./TopAPPBar.css";
 import { tabs } from "./tabsData";
+import ModalSort from "./ModalSort/ModalSort";
 
 interface TabsProps {
   activeTab: string;
   onTabChange: (tab: string) => void;
 }
 
-
 const TopAPPBar: React.FC<TabsProps> = ({activeTab, onTabChange}) => {
-
   const handleTabClick = (tab: string) => {
     onTabChange(tab);
   };
-
   const [activeMenu, setActiveMenu] = useState<boolean>(false)
   const handleMenuClick = () => {
     setActiveMenu((prev) => !prev)
@@ -22,9 +20,10 @@ const TopAPPBar: React.FC<TabsProps> = ({activeTab, onTabChange}) => {
 
   return (
     <div className="TopAPPBar">
+      {activeMenu && <ModalSort/>}
       <div className="navigation">
-        <img src="./Vector.svg" alt="Иконка поиска" />
-        <input placeholder="Введите имя, тег, почту..."></input>
+        <img src="./icon-finder.svg" alt="Иконка поиска" />
+        <input className="TopAPPBar__input" placeholder="Введите имя, тег, почту..."></input>
         <svg
           onClick={handleMenuClick}
           className={activeMenu ? 'menu active' : 'menu'}

@@ -3,12 +3,12 @@
   margin-bottom: 2.6rem;
 }
 
-.TopAPPBar input {
+.TopAPPBar__input {
   font-size: var(--font-size-header);
   width: 100%;
 }
 
-.TopAPPBar input::placeholder {
+.TopAPPBar__input::placeholder {
   color: var(--color-input);
 }
 

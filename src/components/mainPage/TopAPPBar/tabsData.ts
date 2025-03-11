@@ -1,0 +1,15 @@
+export const tabs: {[key: string]: string} = {
+  "Все": 'all',
+  "Дизайн": 'design',
+  "Frontend": 'frontend',
+  "Backend": 'backend',
+  "iOS": 'ios',
+  "Android" : 'android',
+  "QA": 'qa',
+  "Бэк-офис": 'back_office',
+  "Аналитика": 'analytics',
+  "Менеджмент": 'management',
+  "Техподдержка" : 'support',
+  "HR" : 'hr',
+  "PR" : 'pr',
+}

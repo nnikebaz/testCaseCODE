@@ -1,14 +1,20 @@
 import { useState } from "react";
 import "./TopAPPBar.css";
+import { tabs } from "./tabsData";
 
-const TopAPPBar: React.FC = () => {
-  const tabs = ["Все", "Designers", "Analysts", "Managers", "iOS", "Android"];
-  const [activeTab, setActiveTab] = useState<string>(tabs[0])
-  const [activeMenu, setActiveMenu] = useState<boolean>(false)
+interface TabsProps {
+  activeTab: string;
+  onTabChange: (tab: string) => void;
+}
+
+
+const TopAPPBar: React.FC<TabsProps> = ({activeTab, onTabChange}) => {
+
   const handleTabClick = (tab: string) => {
-    setActiveTab(tab)
-    console.log(`Выбрана вкладка ${tab}`)
-  }
+    onTabChange(tab);
+  };
+
+  const [activeMenu, setActiveMenu] = useState<boolean>(false)
   const handleMenuClick = () => {
     setActiveMenu((prev) => !prev)
     console.log(activeMenu)
@@ -34,9 +40,8 @@ const TopAPPBar: React.FC = () => {
           />
         </svg>
       </div>
-
       <li className="tabs">
-        {tabs.map((tab, index) => {
+        {Object.keys(tabs).map((tab, index) => {
           return <ul key={index} onClick={() => handleTabClick(tab)} className={activeTab === tab ? 'tab active' : 'tab'}>{tab}</ul>;
         })}
       </li>

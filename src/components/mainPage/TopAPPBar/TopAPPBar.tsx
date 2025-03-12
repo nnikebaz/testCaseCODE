@@ -3,12 +3,13 @@ import "./TopAPPBar.css";
 import { tabs } from "./tabsData";
 import ModalSort from "./ModalSort/ModalSort";
 
-interface TabsProps {
+interface Props {
   activeTab: string;
   onTabChange: (tab: string) => void;
+  onSearchChange: (value: string) => void
 }
 
-const TopAPPBar: React.FC<TabsProps> = ({activeTab, onTabChange}) => {
+const TopAPPBar: React.FC<Props> = ({activeTab, onTabChange, onSearchChange}) => {
   const handleTabClick = (tab: string) => {
     onTabChange(tab);
   };
@@ -22,7 +23,7 @@ const TopAPPBar: React.FC<TabsProps> = ({activeTab, onTabChange}) => {
       <ModalSort activeMenu={activeMenu} setActiveMenu={setActiveMenu}/>
       <div className="navigation">
         <img src="./icon-finder.svg" alt="Иконка поиска" />
-        <input className="TopAPPBar__input" placeholder="Введите имя, тег, почту..."></input>
+        <input className="TopAPPBar__input" placeholder="Введите имя, тег, почту..." onChange={(e) => onSearchChange(e.target.value)}></input>
         <svg
           onClick={handleMenuClick}
           className={activeMenu ? 'menu active' : 'menu'}

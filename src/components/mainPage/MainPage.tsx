@@ -25,10 +25,16 @@ const MainPage: React.FC = () => {
   const [stateProfiles, setProfiles] = useState<Profile[]>([]);
   const [activeTab, setActiveTab] = useState<string>("Все");
   const [loading, setLoading] = useState<boolean>(false)
+  const [searchTerm, setSearchTerm] = useState<string>('')
+
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
     console.log(`Выбрана вкладка ${tab}`);
   };
+
+  const handleSearchChange = (value: string) => {
+    setSearchTerm(value)
+  }
 
   const getUsersData = useCallback(async (example: string) => {
     try {
@@ -55,11 +61,19 @@ const MainPage: React.FC = () => {
     }
   }, [getUsersData, activeTab]);
 
+  const filteredProfiles = stateProfiles.filter((profile) => {
+    const fullname = `${profile.firstName} ${profile.lastName}`
+    const phone = `${profile.phone}`
+    return fullname.toLowerCase().includes(searchTerm.toLowerCase()) || phone.includes(searchTerm)
+  })
+
+  console.log(filteredProfiles)
+
   return (
     <div className="MainPage">
-      <TopAPPBar activeTab={activeTab} onTabChange={handleTabChange} />
+      <TopAPPBar activeTab={activeTab} onTabChange={handleTabChange} onSearchChange={handleSearchChange}/>
       {loading && <img src="./ios-spinner.min.svg"></img>}
-      <Profiles profiles={stateProfiles} />
+      <Profiles profiles={stateProfiles} filteredProfiles={filteredProfiles} searchTerm={searchTerm}/>
     </div>
   );
 };

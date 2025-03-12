@@ -15,12 +15,11 @@ const TopAPPBar: React.FC<TabsProps> = ({activeTab, onTabChange}) => {
   const [activeMenu, setActiveMenu] = useState<boolean>(false)
   const handleMenuClick = () => {
     setActiveMenu((prev) => !prev)
-    console.log(activeMenu)
   }
 
   return (
     <div className="TopAPPBar">
-      {activeMenu && <ModalSort/>}
+      <ModalSort activeMenu={activeMenu} setActiveMenu={setActiveMenu}/>
       <div className="navigation">
         <img src="./icon-finder.svg" alt="Иконка поиска" />
         <input className="TopAPPBar__input" placeholder="Введите имя, тег, почту..."></input>

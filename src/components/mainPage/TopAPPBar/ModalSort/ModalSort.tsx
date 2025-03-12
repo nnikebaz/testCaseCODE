@@ -1,4 +1,10 @@
+import { useState } from "react";
 import "./ModalSort.css";
+
+interface Props {
+  activeMenu: boolean;
+  setActiveMenu: (prev: boolean) => void;
+}
 
 const sortFields = [
   {
@@ -13,11 +19,18 @@ const sortFields = [
   },
 ];
 
-const ModalSort: React.FC = () => {
+const ModalSort: React.FC<Props> = ({activeMenu, setActiveMenu}) => {
+  const [activeBackButton, setActiveBackButton] = useState<boolean>(false)
+  const handleOnBackButtonClick = ():void => {
+    setActiveBackButton((prev) => !prev)
+    setActiveBackButton(false)
+    setActiveMenu(false)
+  }
+
   return (
-    <div className="ModalSort">
+    <div className={activeMenu && !activeBackButton ? 'ModalSort active' :  activeMenu && activeBackButton ? 'ModalSort' : 'ModalSort'}>
       <div className="ModalSort__top">
-        <img src="./icon-back.svg" alt="Иконка назад" className="ModalSort__icon-back" />
+        <img src="./icon-back.svg" alt="Иконка назад" className="ModalSort__icon-back" onClick={handleOnBackButtonClick}/>
         <h3 className="ModalSort__header">Сортировка</h3>
       </div>
       <div className="ModalSort__content">

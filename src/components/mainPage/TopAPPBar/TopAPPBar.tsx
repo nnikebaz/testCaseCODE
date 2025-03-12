@@ -10,13 +10,16 @@ interface Props {
 }
 
 const TopAPPBar: React.FC<Props> = ({activeTab, onTabChange, onSearchChange}) => {
-  const handleTabClick = (tab: string) => {
-    onTabChange(tab);
-  };
   const [activeMenu, setActiveMenu] = useState<boolean>(false)
+
   const handleMenuClick = () => {
     setActiveMenu((prev) => !prev)
   }
+  const handleTabClick = (tab: string) => {
+    onTabChange(tab);
+  };
+
+
 
   return (
     <div className="TopAPPBar">

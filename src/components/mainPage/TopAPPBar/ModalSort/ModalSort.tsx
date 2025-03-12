@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./ModalSort.css";
+import { useSort } from "./SortContext";
 
 interface Props {
   activeMenu: boolean;
@@ -19,8 +20,17 @@ const sortFields = [
   },
 ];
 
+
 const ModalSort: React.FC<Props> = ({activeMenu, setActiveMenu}) => {
   const [activeBackButton, setActiveBackButton] = useState<boolean>(false)
+
+  const {sortTerm, setSortTerm} = useSort()
+
+  const handleSortChange = (value:string) => {
+    setSortTerm(value)
+
+  }
+
   const handleOnBackButtonClick = ():void => {
     setActiveBackButton((prev) => !prev)
     setActiveBackButton(false)
@@ -39,7 +49,7 @@ const ModalSort: React.FC<Props> = ({activeMenu, setActiveMenu}) => {
             <div key={index} className="ModalSort__item">
               <label>
                 {field.buttonName}
-              <input type="radio" id={field.id} name={field.attributeName}/>
+              <input type="radio" id={field.id} name={field.attributeName} onChange={() => handleSortChange(field.id)} checked={field.id === sortTerm}/>
               <span></span>
               </label>
             </div>

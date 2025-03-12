@@ -1,13 +1,13 @@
-import MainPage from "./components/mainPage/MainPage"
-import './App.css'
+import MainPage from "./components/mainPage/MainPage";
+import "./App.css";
+import { SortProvider } from "./components/mainPage/TopAPPBar/ModalSort/SortContext";
 
 function App() {
-
   return (
-    <>
-    <MainPage/>
-    </>
-  )
+    <SortProvider>
+      <MainPage />
+    </SortProvider>
+  );
 }
 
-export default App
+export default App;

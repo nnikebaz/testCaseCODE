@@ -4,6 +4,7 @@ import TopAPPBar from "./TopAPPBar/TopAPPBar";
 import axios from "axios";
 import Profiles from "./Profile/Profiles";
 import { tabs } from "./TopAPPBar/tabsData";
+import { useSort } from "./TopAPPBar/ModalSort/SortContext";
 
 export interface Profile {
   avatarUrl: string;
@@ -26,10 +27,11 @@ const MainPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>("Все");
   const [loading, setLoading] = useState<boolean>(false)
   const [searchTerm, setSearchTerm] = useState<string>('')
+  const {sortTerm, setSortTerm} = useSort()
+
 
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
-    console.log(`Выбрана вкладка ${tab}`);
   };
 
   const handleSearchChange = (value: string) => {
@@ -67,7 +69,12 @@ const MainPage: React.FC = () => {
     return fullname.toLowerCase().includes(searchTerm.toLowerCase()) || phone.includes(searchTerm)
   })
 
-  console.log(filteredProfiles)
+  const sortByAlphabet = [...stateProfiles].sort((a, b) => (
+    a.firstName.localeCompare(b.firstName)
+  ));
+
+console.log(sortByAlphabet)
+
 
   return (
     <div className="MainPage">

@@ -1,5 +1,6 @@
 import "./Profiles.css";
 import { Profile } from "../MainPage";
+import NothingFound from "../NothingFound/NothingFound";
 
 interface Props {
   profiles: Profile[];
@@ -36,7 +37,7 @@ const Profiles: React.FC<Props> = ({profiles, filteredProfiles, searchTerm}) => 
           );
         })
       ) : searchTerm.length > 0 ? (
-        <div className="profiles__empty">Ничего не найдено</div>
+        <NothingFound/>
       ) : null}
     </div>
   );

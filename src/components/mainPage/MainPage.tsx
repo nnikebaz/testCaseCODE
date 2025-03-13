@@ -67,19 +67,26 @@ const MainPage: React.FC = () => {
     return fullname.toLowerCase().includes(searchTerm.toLowerCase()) || phone.includes(searchTerm)
   })
 
-  const sortByAlphabet = (profiles: Profile[]) => {
-    return [...profiles].sort((a,b) => {
-      const aFullName = (a.firstName + a.lastName).toLowerCase()
-      const bFullName = (b.firstName + b.lastName).toLowerCase()
-      return aFullName.localeCompare(bFullName)
-    })
+  const sorting = (profiles: Profile[], sortType:string) => {
+    if (sortType === 'alphabet') {
+      return [...profiles].sort((a,b) => {
+        const aFullName = (a.firstName + a.lastName).toLowerCase()
+        const bFullName = (b.firstName + b.lastName).toLowerCase()
+        return aFullName.localeCompare(bFullName)
+      })
+    } else if (sortType === 'birthday') {
+      return [...profiles].sort((a,b) => {
+        return a.birthday.localeCompare(b.birthday)
+      })
+    }
+    return profiles
   }
 
   return (
     <div className="MainPage">
       <TopAPPBar activeTab={activeTab} onTabChange={handleTabChange} onSearchChange={handleSearchChange}/>
       {loading && <img src="./ios-spinner.min.svg"></img>}
-      <Profiles profiles={stateProfiles} filteredProfiles={filteredProfiles} searchTerm={searchTerm} sortByAlphabet={sortByAlphabet}/>
+      <Profiles profiles={stateProfiles} filteredProfiles={filteredProfiles} searchTerm={searchTerm} sorting={sorting}/>
     </div>
   );
 };

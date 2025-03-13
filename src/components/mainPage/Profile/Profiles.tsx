@@ -1,19 +1,13 @@
 import "./Profiles.css";
 import { Profile } from "../MainPage";
 import NothingFound from "../NothingFound/NothingFound";
-import { useSort } from "../TopAPPBar/ModalSort/SortContext";
 
 interface Props {
-  profiles: Profile[];
-  filteredProfiles: Profile[];
-  sorting: (profiles: Profile[], sortType: string) => Profile[];
+  dataToRender: Profile[];
   searchTerm: string;
 }
 
-const Profiles: React.FC<Props> = ({profiles, filteredProfiles, searchTerm, sorting}) => {
-  const {sortTerm} = useSort()
-  const dataToRender = sorting((searchTerm.length > 0 ? filteredProfiles : profiles), sortTerm);
-  console.log(dataToRender)
+const Profiles: React.FC<Props> = ({dataToRender, searchTerm}) => {
   return (
     <div className="profiles">
       {dataToRender.length > 0 ?  (

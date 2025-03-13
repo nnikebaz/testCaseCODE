@@ -27,6 +27,7 @@ const MainPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>("Все");
   const [loading, setLoading] = useState<boolean>(false)
   const [searchTerm, setSearchTerm] = useState<string>('')
+  const{sortTerm} = useSort()
 
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
@@ -82,11 +83,14 @@ const MainPage: React.FC = () => {
     return profiles
   }
 
+  const dataToRender = sorting((searchTerm.length > 0 ? filteredProfiles : stateProfiles), sortTerm);
+  console.log(dataToRender)
+
   return (
     <div className="MainPage">
       <TopAPPBar activeTab={activeTab} onTabChange={handleTabChange} onSearchChange={handleSearchChange}/>
       {loading && <img src="./ios-spinner.min.svg"></img>}
-      <Profiles profiles={stateProfiles} filteredProfiles={filteredProfiles} searchTerm={searchTerm} sorting={sorting}/>
+      <Profiles searchTerm={searchTerm} dataToRender={dataToRender}/>
     </div>
   );
 };

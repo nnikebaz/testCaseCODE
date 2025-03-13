@@ -27,8 +27,6 @@ const MainPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>("Все");
   const [loading, setLoading] = useState<boolean>(false)
   const [searchTerm, setSearchTerm] = useState<string>('')
-  const {sortTerm, setSortTerm} = useSort()
-
 
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
@@ -69,18 +67,19 @@ const MainPage: React.FC = () => {
     return fullname.toLowerCase().includes(searchTerm.toLowerCase()) || phone.includes(searchTerm)
   })
 
-  const sortByAlphabet = [...stateProfiles].sort((a, b) => (
-    a.firstName.localeCompare(b.firstName)
-  ));
-
-console.log(sortByAlphabet)
-
+  const sortByAlphabet = (profiles: Profile[]) => {
+    return [...profiles].sort((a,b) => {
+      const aFullName = (a.firstName + a.lastName).toLowerCase()
+      const bFullName = (b.firstName + b.lastName).toLowerCase()
+      return aFullName.localeCompare(bFullName)
+    })
+  }
 
   return (
     <div className="MainPage">
       <TopAPPBar activeTab={activeTab} onTabChange={handleTabChange} onSearchChange={handleSearchChange}/>
       {loading && <img src="./ios-spinner.min.svg"></img>}
-      <Profiles profiles={stateProfiles} filteredProfiles={filteredProfiles} searchTerm={searchTerm}/>
+      <Profiles profiles={stateProfiles} filteredProfiles={filteredProfiles} searchTerm={searchTerm} sortByAlphabet={sortByAlphabet}/>
     </div>
   );
 };

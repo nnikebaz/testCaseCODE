@@ -16,7 +16,7 @@ export const useSort = () => {
 }
 
 export const SortProvider = ({ children }: { children: ReactNode }) => {
-  const [sortTerm, setSortTerm] = useState<string>("");
+  const [sortTerm, setSortTerm] = useState<string>("alphabet");
 
   return (
     <SortContext.Provider value={{ sortTerm, setSortTerm }}>

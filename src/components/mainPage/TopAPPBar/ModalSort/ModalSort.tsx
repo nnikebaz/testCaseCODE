@@ -11,12 +11,14 @@ const sortFields = [
   {
     id: "alphabet",
     buttonName: "По алфавиту",
-    attributeName: 'sort'
+    attributeName: 'sort',
+    checked: true,
   },
   {
     id: "birthday",
     buttonName: "По дню рождения",
-    attributeName: 'sort'
+    attributeName: 'sort',
+    checked: false,
   },
 ];
 
@@ -28,7 +30,6 @@ const ModalSort: React.FC<Props> = ({activeMenu, setActiveMenu}) => {
 
   const handleSortChange = (value:string) => {
     setSortTerm(value)
-
   }
 
   const handleOnBackButtonClick = ():void => {

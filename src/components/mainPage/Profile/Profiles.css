@@ -4,6 +4,11 @@
   gap: 1.6rem;
 }
 
+.profiles__year {
+  text-align: center;
+  color: var(--color-input);
+}
+
 .profiles__inner {
   display: flex;
   align-items: center;

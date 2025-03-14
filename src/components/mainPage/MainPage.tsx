@@ -16,6 +16,12 @@ export interface Profile {
   phone: string;
   position: string;
   profileTag: string;
+  year: undefined;
+}
+
+export interface ProfilesGroupByDate {
+  year: string,
+  profiles: Profile[],
 }
 
 interface UserResponse {
@@ -58,7 +64,6 @@ const MainPage: React.FC = () => {
     const selectedTab = tabs[activeTab]
     if (selectedTab) {
       getUsersData(selectedTab)
-      console.log(getUsersData(selectedTab))
     }
   }, [getUsersData, activeTab]);
 
@@ -67,6 +72,23 @@ const MainPage: React.FC = () => {
     const phone = `${profile.phone}`
     return fullname.toLowerCase().includes(searchTerm.toLowerCase()) || phone.includes(searchTerm)
   })
+  
+  const groupByYear = (profiles: Profile[]) => {
+    return profiles.reduce((groups, profile) => {
+      const year = new Date(profile.birthday).getFullYear().toString();
+  
+      const groupIndex = groups.findIndex(group => group.year === year);
+  
+      if (groupIndex === -1) {
+        groups.push({ year, profiles: [profile] });
+      } else {
+        groups[groupIndex].profiles.push(profile);
+      }
+  
+      return groups;
+    }, [] as { year: string; profiles: Profile[] }[]).sort((a,b) => Number(a.year) - Number(b.year));
+  };
+
 
   const sorting = (profiles: Profile[], sortType:string) => {
     if (sortType === 'alphabet') {
@@ -76,21 +98,25 @@ const MainPage: React.FC = () => {
         return aFullName.localeCompare(bFullName)
       })
     } else if (sortType === 'birthday') {
-      return [...profiles].sort((a,b) => {
-        return a.birthday.localeCompare(b.birthday)
-      })
+      console.log(profiles)
+      console.log(groupByYear(profiles))
+      return groupByYear(profiles)
     }
     return profiles
   }
 
+  const normalizedData = ( data:Profile[] | ProfilesGroupByDate[]) => {
+    return { all: data };
+  };
+  
   const dataToRender = sorting((searchTerm.length > 0 ? filteredProfiles : stateProfiles), sortTerm);
-  console.log(dataToRender)
+  const finalData = normalizedData(dataToRender)
 
   return (
     <div className="MainPage">
       <TopAPPBar activeTab={activeTab} onTabChange={handleTabChange} onSearchChange={handleSearchChange}/>
       {loading && <img src="./ios-spinner.min.svg"></img>}
-      <Profiles searchTerm={searchTerm} dataToRender={dataToRender}/>
+      <Profiles searchTerm={searchTerm} finalData={finalData}/>
     </div>
   );
 };

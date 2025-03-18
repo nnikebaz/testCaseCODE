@@ -26,7 +26,6 @@ hr {
 :root {
   padding: 4rem 2rem;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  --color-input: #C3C3C6;
   --font-size-h3: 2rem;
   --font-size-profile-name: 1.6rem;
   --font-size-header: 1.5rem;
@@ -35,10 +34,12 @@ hr {
   --font-weight-semibold: 600;
   --font-weight-medium: 500;
   --font-weight-regular: 400;
+  --color-input: #C3C3C6;
   --color-tabs: #97979B;
   --color-accent :#6534FF;
   --color-position: #55555C;
   --color-fullname: #050510;
+  --color-birthday: #55555C;
   --bg-color-light: #fff;
 
 }

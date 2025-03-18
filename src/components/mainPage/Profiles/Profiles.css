@@ -3,3 +3,22 @@
   flex-direction: column;
   gap: 1.6rem;
 }
+
+.next-year {
+  display: flex;
+  align-items: center;
+  gap: 5.6rem;
+}
+
+.next-year__header {
+  font-size: var(--font-size-header);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-input);
+  text-align: center;
+}
+
+.next-year__line {
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-input);
+}

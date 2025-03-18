@@ -56,6 +56,10 @@
   background-color: var(--color-accent);
 }
 
+.menu {
+  cursor: pointer;
+}
+
 .menu.active path{
   fill: var(--color-accent);
 }

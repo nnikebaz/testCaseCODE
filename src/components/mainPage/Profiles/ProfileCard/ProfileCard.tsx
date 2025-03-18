@@ -21,15 +21,17 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
 
   return (
     <div className="ProfileCard">
-      <img src={goose} alt={`Фото ${fullname}`} className="ProfileCard__img" />
-      <div className="ProfileCard__wrapper">
-        <div className="ProfileCard__inner">
-          <div className="ProfileCard__fullname">{fullname}</div>
-          <div className="ProfileCard__tag">{tag}</div>
-          {sortTerm === 'birthday' ? <div className="ProfileCard__birthDay">{normalizeBirthday(birthday)}</div> : null}
+      <div className="ProfileCard__flexbox">
+        <img src={goose} alt={`Фото ${fullname}`} className="ProfileCard__img" />
+        <div className="ProfileCard__wrapper">
+          <div className="ProfileCard__inner">
+            <div className="ProfileCard__fullname">{fullname}</div>
+            <div className="ProfileCard__tag">{tag}</div>
+          </div>
+          <div className="ProfileCard__position">{position}</div>
         </div>
-        <div className="ProfileCard__position">{position}</div>
       </div>
+      {sortTerm === 'birthday' ? <div className="ProfileCard__birthday">{normalizeBirthday(birthday)}</div> : null}
     </div>
   );
 };

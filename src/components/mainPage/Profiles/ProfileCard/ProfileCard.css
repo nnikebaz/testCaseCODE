@@ -1,12 +1,13 @@
 .ProfileCard {
   display: flex;
   align-items: center;
-  gap: 1.6rem;
+  justify-content: space-between;
 }
 
-.ProfileCard__year {
-  text-align: center;
-  color: var(--color-input);
+.ProfileCard__flexbox {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
 }
 
 .ProfileCard__inner {
@@ -36,6 +37,12 @@
 .ProfileCard__tag {
   font-size: var(--font-size-tag);
   color: var(--color-tabs);
+}
+
+.ProfileCard__birthday {
+  font-size: var(--font-size-header);
+  color: var(--color-birthday);
+  padding-right: 1.6rem;
 }
 
 .ProfileCard__position {

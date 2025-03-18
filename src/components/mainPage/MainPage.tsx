@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import "./MainPage.css";
 import TopAPPBar from "./TopAPPBar/TopAPPBar";
 import axios from "axios";
-import Profiles from "./Profile/Profiles";
+import Profiles from "./Profiles/Profiles";
 import { tabs } from "./TopAPPBar/tabsData";
 import { useSort } from "./TopAPPBar/ModalSort/SortContext";
 
@@ -15,7 +15,7 @@ export interface Profile {
   lastName: string;
   phone: string;
   position: string;
-  profileTag: string;
+  userTag: string;
   year: undefined;
 }
 
@@ -33,7 +33,21 @@ const MainPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>("Все");
   const [loading, setLoading] = useState<boolean>(false)
   const [searchTerm, setSearchTerm] = useState<string>('')
-  const{sortTerm} = useSort()
+  const {sortTerm} = useSort()
+  const nextYearBirthday: Profile[] = []
+  
+  // полезности
+  const today = new Date()
+  const sortingByBirthday = (element: Profile[]):Profile[] => {
+    return element.sort((a: Profile,b: Profile) => {
+      const birthdayA = new Date(a.birthday)
+      const birthdayB = new Date(b.birthday)
+      const nextYearBirthdayA = new Date(today.getFullYear(), birthdayA.getMonth(), birthdayA.getDate())
+      const nextYearBirthdayB = new Date(today.getFullYear(), birthdayB.getMonth(), birthdayB.getDate())
+
+      return nextYearBirthdayA.getTime() - nextYearBirthdayB.getTime()
+    })
+}
 
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
@@ -72,24 +86,9 @@ const MainPage: React.FC = () => {
     const phone = `${profile.phone}`
     return fullname.toLowerCase().includes(searchTerm.toLowerCase()) || phone.includes(searchTerm)
   })
-  
-  const groupByYear = (profiles: Profile[]) => {
-    return profiles.reduce((groups, profile) => {
-      const year = new Date(profile.birthday).getFullYear().toString();
-  
-      const groupIndex = groups.findIndex(group => group.year === year);
-  
-      if (groupIndex === -1) {
-        groups.push({ year, profiles: [profile] });
-      } else {
-        groups[groupIndex].profiles.push(profile);
-      }
-  
-      return groups;
-    }, [] as { year: string; profiles: Profile[] }[]).sort((a,b) => Number(a.year) - Number(b.year));
-  };
 
-
+  
+  
   const sorting = (profiles: Profile[], sortType:string) => {
     if (sortType === 'alphabet') {
       return [...profiles].sort((a,b) => {
@@ -98,25 +97,30 @@ const MainPage: React.FC = () => {
         return aFullName.localeCompare(bFullName)
       })
     } else if (sortType === 'birthday') {
-      console.log(profiles)
-      console.log(groupByYear(profiles))
-      return groupByYear(profiles)
+
+      const filterThisYearBirthday = [...profiles].filter((profile) => {
+        const birthdayDate = new Date(profile.birthday)
+        const thisYearBirthday = new Date(today.getFullYear(), birthdayDate.getMonth(), birthdayDate.getDate())
+
+        if (thisYearBirthday < today) {
+          nextYearBirthday.push(profile)
+          return false
+        }
+      return true
+      })
+
+      return [...sortingByBirthday(filterThisYearBirthday)]
     }
     return profiles
   }
-
-  const normalizedData = ( data:Profile[] | ProfilesGroupByDate[]) => {
-    return { all: data };
-  };
   
   const dataToRender = sorting((searchTerm.length > 0 ? filteredProfiles : stateProfiles), sortTerm);
-  const finalData = normalizedData(dataToRender)
 
   return (
     <div className="MainPage">
       <TopAPPBar activeTab={activeTab} onTabChange={handleTabChange} onSearchChange={handleSearchChange}/>
       {loading && <img src="./ios-spinner.min.svg"></img>}
-      <Profiles searchTerm={searchTerm} finalData={finalData}/>
+      <Profiles searchTerm={searchTerm} dataToRender={dataToRender} nextYearBirthday={sortingByBirthday(nextYearBirthday)}/>
     </div>
   );
 };

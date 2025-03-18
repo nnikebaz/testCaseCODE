@@ -1,44 +1,44 @@
-.profiles {
+.ProfileCard {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   gap: 1.6rem;
 }
 
-.profiles__year {
+.ProfileCard__year {
   text-align: center;
   color: var(--color-input);
 }
 
-.profiles__inner {
+.ProfileCard__inner {
   display: flex;
   align-items: center;
   gap: .4rem;
 }
 
-.profiles__item {
+.ProfileCard__item {
   display: flex;
   align-items: center;
   gap: 1.6rem;
 }
 
-.profiles__img {
+.ProfileCard__img {
   border-radius: 100%;
   width: 72px;
   aspect-ratio: 1 / 1;
 }
 
-.profiles__fullname {
+.ProfileCard__fullname {
   font-size: var(--font-size-profile-name);
   color: var(--color-fullname);
   font-weight: var(--font-weight-medium);
 }
 
-.profiles__tag {
+.ProfileCard__tag {
   font-size: var(--font-size-tag);
   color: var(--color-tabs);
 }
 
-.profiles__position {
+.ProfileCard__position {
   color: var(--color-position);
   font-size: var(--font-size-position);
   font-weight: var(--font-weight-regular);

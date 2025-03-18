@@ -5,9 +5,10 @@ import goose from '/goose.png'
 
 interface Props {
   profile: Profile;
+  handleClickNavigate: (profileId: string) => void;
 }
 
-const ProfileCard: React.FC<Props> = ({ profile }) => {
+const ProfileCard: React.FC<Props> = ({ profile, handleClickNavigate }) => {
   const {sortTerm} = useSort()
   // const avatar = `${profile.avatarUrl}`;
   const fullname = `${profile.firstName} ${profile.lastName}`;
@@ -18,9 +19,10 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
   const normalizeBirthday = (date: Date) => {
     return birthday.getDate() + ' ' + new Intl.DateTimeFormat('ru-RU', { month: 'short' }).format(date).slice(0,-1)
   }
+  const profileId = profile.id
 
   return (
-    <div className="ProfileCard">
+    <div className="ProfileCard" onClick={() => handleClickNavigate(profileId)}>
       <div className="ProfileCard__flexbox">
         <img src={goose} alt={`Фото ${fullname}`} className="ProfileCard__img" />
         <div className="ProfileCard__wrapper">

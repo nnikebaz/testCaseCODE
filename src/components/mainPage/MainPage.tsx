@@ -115,6 +115,7 @@ const MainPage: React.FC = () => {
   }
   
   const dataToRender = sorting((searchTerm.length > 0 ? filteredProfiles : stateProfiles), sortTerm);
+  console.log(dataToRender)
 
   return (
     <div className="MainPage">

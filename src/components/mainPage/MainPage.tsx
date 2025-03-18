@@ -16,13 +16,8 @@ export interface Profile {
   phone: string;
   position: string;
   userTag: string;
-  year: undefined;
 }
 
-export interface ProfilesGroupByDate {
-  year: string,
-  profiles: Profile[],
-}
 
 interface UserResponse {
   items: Profile[];
@@ -87,8 +82,6 @@ const MainPage: React.FC = () => {
     return fullname.toLowerCase().includes(searchTerm.toLowerCase()) || phone.includes(searchTerm)
   })
 
-  
-  
   const sorting = (profiles: Profile[], sortType:string) => {
     if (sortType === 'alphabet') {
       return [...profiles].sort((a,b) => {

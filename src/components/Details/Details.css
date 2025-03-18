@@ -1,0 +1,73 @@
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--bg-color-light-info);
+  padding-bottom: 2.4rem;
+}
+
+.info__img {
+  border-radius: 100%;
+  width: 10.4rem;
+  aspect-ratio: 1 / 1;
+  margin-bottom: 2.4rem;
+}
+
+.info__header {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  margin-bottom: 1.2rem;
+
+}
+
+.info__name {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-fullname);
+}
+
+.info__tag {
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-tag);
+  color: var(--color-tabs);
+}
+
+.info__position {
+  color: var(--color-position);
+  font-size: var(--font-size-position);
+  font-weight: var(--font-weight-regular);
+}
+
+.contacts__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 6rem;
+}
+
+.contacts__flexbox {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  font-size: var(--font-size-profile-name);
+  font-weight: var(--font-weight-medium);
+}
+
+.contacts__birthday {
+  font-size: var(--font-size-profile-name);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-fullname);
+}
+
+.contacts__value {
+  font-size: var(--font-size-profile-name);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-fullname);
+}
+
+.contacts__years {
+  font-size: var(--font-size-profile-name);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-tabs);
+}

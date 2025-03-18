@@ -10,7 +10,7 @@ const SortContext = createContext<SortContextType | undefined>(undefined)
 export const useSort = () => {
   const context = useContext(SortContext)
   if (!context) {
-    throw new Error ('ошибка контекста')
+    throw new Error ('ошибка контекста sort')
   }
   return context
 }

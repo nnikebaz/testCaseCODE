@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
 import "./Details.css";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { useUsersContext } from "../MainPage/usersContext";
 import phoneIcon from "/phone.svg"
 import starIcon from "/star.svg"
+import BackButton from "../UI/Buttons/BackButton/BackButton";
 
 const Details: React.FC = () => {
   const location = useLocation();
+  const navigate = useNavigate()
   const parameters = new URLSearchParams(location.search);
   const profileId = parameters.get("id");
 
@@ -50,11 +52,18 @@ const Details: React.FC = () => {
     {type: 'phone', value: profileData.phone, icon: phoneIcon, altIcon: 'иконка телефона'},
   ] : [];
 
+  const handleOnBackButtonClick = () => {
+    navigate(-1)
+  };
+
   return (
     <div className="Details">
       {profileData && (
         <div className="Details__wrapper">
           <div className="info">
+          <div className="Details__button-wrapper">
+            <BackButton onBackButtonClick={handleOnBackButtonClick}/>
+          </div>
             <img
               className="info__img"
               src={profileData.avatarUrl}

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./ModalSort.css";
 import { useSort } from "./SortContext";
+import BackButton from "../../../UI/Buttons/BackButton/BackButton";
 
 interface Props {
   activeMenu: boolean;
@@ -24,24 +25,22 @@ const sortFields = [
 
 
 const ModalSort: React.FC<Props> = ({activeMenu, setActiveMenu}) => {
-  const [activeBackButton, setActiveBackButton] = useState<boolean>(false)
-
   const {sortTerm, setSortTerm} = useSort()
 
   const handleSortChange = (value:string) => {
     setSortTerm(value)
   }
 
-  const handleOnBackButtonClick = ():void => {
-    setActiveBackButton((prev) => !prev)
-    setActiveBackButton(false)
-    setActiveMenu(false)
-  }
+  const handleOnBackButtonClick = () => {
+    setActiveMenu(false);
+  };
 
   return (
-    <div className={activeMenu && !activeBackButton ? 'ModalSort active' :  activeMenu && activeBackButton ? 'ModalSort' : 'ModalSort'}>
+    <div className={`ModalSort ${activeMenu ? "active" : ""}`}>
       <div className="ModalSort__top">
-        <img src="./icon-back.svg" alt="Иконка назад" className="ModalSort__icon-back" onClick={handleOnBackButtonClick}/>
+        <div className="ModalSort__button-wrapper">
+          <BackButton onBackButtonClick={handleOnBackButtonClick}/>
+        </div>
         <h3 className="ModalSort__header">Сортировка</h3>
       </div>
       <div className="ModalSort__content">

@@ -22,9 +22,15 @@ hr {
   border: 0;
 }
 
+button {
+  background-color: unset;
+  border: unset;
+  padding: unset;
+  cursor: pointer;
+}
+
 
 :root {
-  padding: 4rem 2rem;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   --font-size-h2: 2.4rem;
   --font-size-h3: 2rem;
@@ -44,6 +50,7 @@ hr {
   --color-birthday: #55555C;
   --bg-color-light: #fff;
   --bg-color-light-info: #F7F7F8;
-
+  --padding-side: 0 2rem;
+  --padding-all-side: 4rem 2rem;
 }
 

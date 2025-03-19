@@ -1,0 +1,8 @@
+.close-button {
+  padding: 1rem;
+  transition: transform .1s ease;
+}
+
+.close-button:hover {
+  transform: scale(1.2);
+}

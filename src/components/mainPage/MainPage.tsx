@@ -1,11 +1,11 @@
-import { useCallback, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import "./MainPage.css";
 import TopAPPBar from "./TopAPPBar/TopAPPBar";
-import axios from "axios";
 import Profiles from "./Profiles/Profiles";
 import { tabs } from "./TopAPPBar/tabsData";
 import { useSort } from "./TopAPPBar/ModalSort/SortContext";
 import debounce from "lodash.debounce"
+import { useUsersContext } from "./usersContext";
 
 export interface Profile {
   avatarUrl: string;
@@ -20,17 +20,12 @@ export interface Profile {
 }
 
 
-interface UserResponse {
-  items: Profile[];
-}
-
 const MainPage: React.FC = () => {
-  const [stateProfiles, setProfiles] = useState<Profile[]>([]);
   const [activeTab, setActiveTab] = useState<string>("Все");
-  const [loading, setLoading] = useState<boolean>(false)
   const [searchTerm, setSearchTerm] = useState<string>('')
   const {sortTerm} = useSort()
   const nextYearBirthday: Profile[] = []
+  const {loading, stateProfiles, getUsersData} = useUsersContext()
   
   // полезности
   const today = new Date()
@@ -57,22 +52,10 @@ const MainPage: React.FC = () => {
     debounceSearchTerm(value)
   }
 
-  const getUsersData = useCallback(async (example: string) => {
-    try {
-      setLoading(true)
-      const response = await axios.get<UserResponse>(
-        `https://stoplight.io/mocks/kode-frontend-team/koder-stoplight/86566464/users?__example=${example}`
-      );
-      setProfiles(response.data.items);
-      return response.data;
-    } catch (error) {
-      console.error("Ошибка при запросе", error);
-      return null;
-    } 
-    finally {
-      setLoading (false)
-    }
-  }, []);
+  useEffect(() => {
+    getUsersData('all')
+  }, [getUsersData])
+
 
   useEffect(() => {
     const selectedTab = tabs[activeTab]

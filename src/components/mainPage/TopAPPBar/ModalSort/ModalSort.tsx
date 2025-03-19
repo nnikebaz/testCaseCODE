@@ -1,7 +1,7 @@
-import { useState } from "react";
 import "./ModalSort.css";
 import { useSort } from "./SortContext";
 import BackButton from "../../../UI/Buttons/BackButton/BackButton";
+import CloseButton from "../../../UI/Buttons/CloseButton/CloseButton";
 
 interface Props {
   activeMenu: boolean;
@@ -31,7 +31,7 @@ const ModalSort: React.FC<Props> = ({ activeMenu, setActiveMenu }) => {
     setActiveMenu(false)
   };
 
-  const handleOnBackButtonClick = () => {
+  const handleOnCloseButtonClick = () => {
     setActiveMenu(false);
   };
 
@@ -45,7 +45,7 @@ const ModalSort: React.FC<Props> = ({ activeMenu, setActiveMenu }) => {
       <div className={`ModalSort ${activeMenu ? "active" : ""}`}>
         <div className="ModalSort__top">
           <div className="ModalSort__button-wrapper">
-            <BackButton onBackButtonClick={handleOnBackButtonClick} />
+            <CloseButton onCloseButtonClick={handleOnCloseButtonClick}/>
           </div>
           <h3 className="ModalSort__header">Сортировка</h3>
         </div>

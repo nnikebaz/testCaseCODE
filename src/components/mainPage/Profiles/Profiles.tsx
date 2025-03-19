@@ -18,7 +18,7 @@ const Profiles: React.FC<Props> = ({ searchTerm, dataToRender, nextYearBirthday}
 
   return (
     <div className="Profiles">
-      {dataToRender.length > 0 ? (
+      {dataToRender.length > 0 || nextYearBirthday.length > 0 ? (
         dataToRender.map((profile, index) => {
           return <ProfileCard profile={profile} key={index} handleClickNavigate={() => handleClickNavigate(profile.id)}/>;
         })

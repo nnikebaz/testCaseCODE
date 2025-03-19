@@ -3,24 +3,30 @@
 }
 
 .ModalSort.active {
+  border-radius: 2rem;
+  position: fixed;
   display: flex;
+  z-index: 9999;
   flex-direction: column;
   background-color: var(--bg-color-light);
-  width: 100%;
-  padding-bottom: 2rem;
+  transform: translate(-50%,-50%);
+  left: 50%;
+  top: 50%;
+  padding: 2.4rem 1.6rem;
 }
 
 .ModalSort__top {
   position: relative;
   display: flex;
   justify-content: center;
-  margin-bottom: 2rem;
+  margin-bottom: 3.6rem;
 }
 
 .ModalSort__item {
   display: flex;
   align-items: center;
   gap: 1.4rem;
+  width: 34rem;
 }
 
 .ModalSort__item input {
@@ -33,10 +39,13 @@
   display: block;
   position: relative;
   padding-left: 3.5rem;
-  margin-bottom: 2rem;
   cursor: pointer;
   font-size: var(--font-size-profile-name);;
   user-select: none;
+}
+
+.ModalSort__content .ModalSort__item:nth-of-type(1) label {
+  margin-bottom: 4rem;
 }
 
 .ModalSort__item span {
@@ -101,4 +110,15 @@
   position: absolute;
   left: 0;
   top: -20%;
+}
+
+.filter {
+  z-index: 2;
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  opacity: 16%;
+  cursor: pointer;
 }

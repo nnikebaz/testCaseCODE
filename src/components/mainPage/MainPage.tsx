@@ -5,6 +5,7 @@ import axios from "axios";
 import Profiles from "./Profiles/Profiles";
 import { tabs } from "./TopAPPBar/tabsData";
 import { useSort } from "./TopAPPBar/ModalSort/SortContext";
+import debounce from "lodash.debounce"
 
 export interface Profile {
   avatarUrl: string;
@@ -48,8 +49,12 @@ const MainPage: React.FC = () => {
     setActiveTab(tab);
   };
 
-  const handleSearchChange = (value: string) => {
+  const debounceSearchTerm = debounce((value: string) => {
     setSearchTerm(value)
+  }, 500)
+
+  const handleSearchChange = (value: string) => {
+    debounceSearchTerm(value)
   }
 
   const getUsersData = useCallback(async (example: string) => {
@@ -79,7 +84,9 @@ const MainPage: React.FC = () => {
   const filteredProfiles = stateProfiles.filter((profile) => {
     const fullname = `${profile.firstName} ${profile.lastName}`
     const phone = `${profile.phone}`
-    return fullname.toLowerCase().includes(searchTerm.toLowerCase()) || phone.includes(searchTerm)
+    const tag = `${profile.userTag}`
+
+    return fullname.toLowerCase().includes(searchTerm.toLowerCase()) || phone.includes(searchTerm) || tag.toLowerCase().includes(searchTerm)
   })
 
   const sorting = (profiles: Profile[], sortType:string) => {

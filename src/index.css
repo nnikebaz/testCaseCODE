@@ -100,7 +100,8 @@ body {
   --color-fullname: var(--color-fullname-light);
   --color-position: var(--color-position-light);
   --bg-color-info: var(--bg-color-info-light);
-  --color-birthday: var(--color-birthday-light)
+  --color-birthday: var(--color-birthday-light);
+  --bg-color-language: var(--bg-color-dark);
 }
 
 [data-theme='dark'] {
@@ -110,7 +111,8 @@ body {
   --color-fullname: var(--color-fullname-dark);
   --color-position: var(--color-position-dark);
   --bg-color-info: var(--bg-color-info-dark);
-  --color-birthday: var(--color-birthday-dark)
+  --color-birthday: var(--color-birthday-dark);
+  --bg-color-language: var(--bg-color-light);
 }
 
 

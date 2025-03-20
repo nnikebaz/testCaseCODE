@@ -1,29 +1,30 @@
 import "./ModalSort.css";
 import { useSort } from "../../../../contexts/SortContext";
 import CloseButton from "../../../UI/Buttons/CloseButton/CloseButton";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   activeMenu: boolean;
   setActiveMenu: (prev: boolean) => void;
 }
 
-const sortFields = [
-  {
-    id: "alphabet",
-    buttonName: "По алфавиту",
-    attributeName: "sort",
-    checked: true,
-  },
-  {
-    id: "birthday",
-    buttonName: "По дню рождения",
-    attributeName: "sort",
-    checked: false,
-  },
-];
-
 const ModalSort: React.FC<Props> = ({ activeMenu, setActiveMenu }) => {
+  const {t} = useTranslation()
   const { sortTerm, setSortTerm } = useSort();
+  const sortFields = [
+    {
+      id: "alphabet",
+      buttonName: t('sort.alphabet'),
+      attributeName: "sort",
+      checked: true,
+    },
+    {
+      id: "birthday",
+      buttonName: t('sort.birthday'),
+      attributeName: "sort",
+      checked: false,
+    },
+  ];
 
   const handleSortChange = (value: string) => {
     setSortTerm(value);
@@ -38,6 +39,7 @@ const ModalSort: React.FC<Props> = ({ activeMenu, setActiveMenu }) => {
     setActiveMenu(false)
   }
 
+
   return (
     <>
       {activeMenu && <div className="filter" onClick={handleOnFilterClick}></div>}
@@ -46,7 +48,7 @@ const ModalSort: React.FC<Props> = ({ activeMenu, setActiveMenu }) => {
           <div className="ModalSort__button-wrapper">
             <CloseButton onCloseButtonClick={handleOnCloseButtonClick}/>
           </div>
-          <h3 className="ModalSort__header">Сортировка</h3>
+          <h3 className="ModalSort__header">{t('sorting')}</h3>
         </div>
         <div className="ModalSort__content">
           {sortFields.map((field, index) => {

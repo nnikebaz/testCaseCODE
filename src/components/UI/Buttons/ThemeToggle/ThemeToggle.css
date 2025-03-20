@@ -1,8 +1,8 @@
 .ThemeToggle {
   position: relative;
   background-color: var(--bg-color-info-light);
-  width: 4.6rem;
-  height: 4.6rem;
+  height: 100%;
+  aspect-ratio: 1 / 1;
   border-radius: 100%;
 }
 

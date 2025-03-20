@@ -1,0 +1,26 @@
+.LanguageToggle {
+  position: relative;
+  background-color: var(--bg-color-language);
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 100%;
+}
+
+.LanguageToggle__item {
+  font-size: var(--font-size-position);
+  font-weight: var(--font-weight-regular);
+}
+
+.LanguageToggle__item.light {
+  color: var(--bg-color-info-light);
+}
+
+.ThemeToggle__icon {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+  aspect-ratio: 1 / 1;
+}

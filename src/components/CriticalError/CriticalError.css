@@ -1,0 +1,38 @@
+.CriticalError {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.CriticalError__wrapper {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+}
+
+.CriticalError__img {
+  width: 5.6rem;
+  aspect-ratio: 1 / 1;
+  margin-bottom: .8rem;
+}
+
+.CriticalError__title {
+  font-size: var(--font-size-critical-error-desc);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-fullname);
+  margin-bottom: 1.2rem;
+}
+
+.CriticalError__description {
+  font-size: var(--font-size-profile-name);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-tabs);
+  margin-bottom: 1.2rem;
+}
+.CriticalError__link{
+  font-size: var(--font-size-profile-name);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-accent);
+  margin-bottom: 1.2rem;
+}

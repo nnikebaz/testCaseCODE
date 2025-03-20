@@ -14,6 +14,7 @@ input:focus-visible {
 
 a {
   text-decoration: unset;
+  color: unset;
 }
 
 ul {
@@ -42,6 +43,7 @@ body {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   --font-size-h2: 2.4rem;
   --font-size-h3: 2rem;
+  --font-size-critical-error-desc: 1.7rem;
   --font-size-profile-name: 1.6rem;
   --font-size-header: 1.5rem;
   --font-size-position: 1.3rem;

@@ -4,7 +4,7 @@ import { SortProvider } from "./components/MainPage/TopAPPBar/ModalSort/SortCont
 import { BrowserRouter as Router, Routes, Route } from "react-router";
 import Details from "./components/Details/Details";
 import { UsersProvider } from "./components/MainPage/usersContext";
-import SkeletonProfileCard from "./components/UI/Skeletons/SkeletonProfileCard/SkeletonProfileCard";
+import CriticalError from "./components/CriticalError/CriticalError";
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<MainPage />}></Route>
           <Route path="/details" element={<Details />}></Route>
-          <Route path="/test" element={<SkeletonProfileCard/>}></Route>
+          <Route path="/test" element={<CriticalError/>}></Route>
         </Routes>
       </Router>
     </SortProvider>

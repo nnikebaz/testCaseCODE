@@ -38,6 +38,7 @@ button {
 
 body {
   position: relative;
+  background-color: var(--background-color);
 }
 
 
@@ -50,23 +51,67 @@ body {
   --font-size-header: 1.5rem;
   --font-size-position: 1.3rem;
   --font-size-tag: 1.4rem;
+
   --font-weight-bold: 700;
   --font-weight-semibold: 600;
   --font-weight-medium: 500;
   --font-weight-regular: 400;
+
   --color-input: #C3C3C6;
-  --color-tabs: #97979B;
+
+  --color-tabs-light: #97979B;
+  --color-tabs-dark: #c3c3c9;;
+
+  --color-active-tab-light: #000;
+  --color-active-tab-dark: #fff;
+
   --color-accent :#6534FF;
-  --color-position: #55555C;
-  --color-fullname: #050510;
-  --color-birthday: #55555C;
+
+  --color-position-light: #55555C;
+  --color-position-dark: #81818e;
+
+  --color-fullname-light: #050510;
+  --color-fullname-dark: #dadadf;
+
+  --color-birthday-light: #55555C;
+  --color-birthday-dark: #c3c3c9;;
+
   --color-offline-text: #fff;
-  --gradient-skeleton: linear-gradient(90deg, #F3F3F6 0%, #FAFAFA 100%);
+
+  --bg-color-dark: #363636;
   --bg-color-light: #fff;
-  --bg-color-light-info: #F7F7F8;
+
+  --bg-color-info-light: #F7F7F8;
+  --bg-color-info-dark: #4a4a4a;
+
   --bg-color-offline: #F44336;
+  --gradient-skeleton: linear-gradient(90deg, #F3F3F6 0%, #FAFAFA 100%);
+
   --padding-side: 0 2rem;
-  --padding-all-side: 4rem 2rem;
+  --padding-all-side: 2rem 2rem 4rem 2rem;
   
 }
+
+
+[data-theme='light'] {
+  --background-color: var(--bg-color-light);
+  --color-tabs: var(--color-tabs-light);
+  --color-active-tab: var(--color-active-tab-light);
+  --color-fullname: var(--color-fullname-light);
+  --color-position: var(--color-position-light);
+  --bg-color-info: var(--bg-color-info-light);
+  --color-birthday: var(--color-birthday-light)
+}
+
+[data-theme='dark'] {
+  --background-color: var(--bg-color-dark);
+  --color-tabs: var(--color-tabs-dark);
+  --color-active-tab: var(--color-active-tab-dark);
+  --color-fullname: var(--color-fullname-dark);
+  --color-position: var(--color-position-dark);
+  --bg-color-info: var(--bg-color-info-dark);
+  --color-birthday: var(--color-birthday-dark)
+}
+
+
 

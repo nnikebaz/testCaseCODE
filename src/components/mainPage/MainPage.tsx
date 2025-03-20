@@ -3,9 +3,9 @@ import "./MainPage.css";
 import TopAPPBar from "./TopAPPBar/TopAPPBar";
 import Profiles from "./Profiles/Profiles";
 import { tabs } from "./TopAPPBar/tabsData";
-import { useSort } from "./TopAPPBar/ModalSort/SortContext";
+import { useSort } from "../../contexts/SortContext";
 import debounce from "lodash.debounce"
-import { useUsersContext } from "./usersContext";
+import { useUsersContext } from "../../contexts/usersContext";
 import CriticalError from "../CriticalError/CriticalError";
 import NetworkStatus from "../NetworkStatus/NetworkStatus";
 

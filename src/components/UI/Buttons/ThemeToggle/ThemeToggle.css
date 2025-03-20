@@ -1,0 +1,29 @@
+.ThemeToggle {
+  position: relative;
+  background-color: var(--bg-color-info-light);
+  width: 4.6rem;
+  height: 4.6rem;
+  border-radius: 100%;
+}
+
+.ThemeToggle__icon {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+  aspect-ratio: 1 / 1;
+}
+
+.ThemeToggle.light {
+  background-color: var(--bg-color-dark)
+}
+
+.ThemeToggle__icon.dark path {
+  fill: var(--bg-color-dark);
+}
+
+.ThemeToggle__icon.light path {
+  fill: var(--bg-color-info-light);
+}

@@ -3,7 +3,7 @@ import { Profile } from "../MainPage";
 import NothingFound from "../NothingFound/NothingFound";
 import ProfileCard from "./ProfileCard/ProfileCard";
 import { useNavigate } from "react-router";
-import { useUsersContext } from "../usersContext";
+import { useUsersContext } from "../../../contexts/usersContext";
 import SkeletonProfileCard from "../../UI/Skeletons/SkeletonProfileCard/SkeletonProfileCard";
 
 interface Props {

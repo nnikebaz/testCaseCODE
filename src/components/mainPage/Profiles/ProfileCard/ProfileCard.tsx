@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Profile } from "../../MainPage";
-import { useSort } from "../../TopAPPBar/ModalSort/SortContext";
+import { useSort } from "../../../../contexts/SortContext";
 import "./ProfileCard.css";
 import goose from '/goose.png'
 import axios from "axios";

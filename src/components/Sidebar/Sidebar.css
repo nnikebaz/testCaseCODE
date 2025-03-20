@@ -1,0 +1,6 @@
+.Sidebar {
+  display: flex;
+  justify-content: end;
+  padding: var(--padding-side);
+  padding-top: 2rem;
+}

@@ -1,6 +1,5 @@
 import "./ModalSort.css";
-import { useSort } from "./SortContext";
-import BackButton from "../../../UI/Buttons/BackButton/BackButton";
+import { useSort } from "../../../../contexts/SortContext";
 import CloseButton from "../../../UI/Buttons/CloseButton/CloseButton";
 
 interface Props {

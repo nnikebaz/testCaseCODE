@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './NetworkStatus.css'
 import { Offline, Online } from 'react-detect-offline'
-import { useUsersContext } from '../MainPage/usersContext'
+import { useUsersContext } from '../../contexts/usersContext'
 
 const NetworkStatus:React.FC = () => {
   const [isOnline, setIsOnline] = useState(navigator.onLine)

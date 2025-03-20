@@ -1,13 +1,20 @@
 import MainPage from "./components/MainPage/MainPage";
 import './util/util.css'
 import "./App.css";
-import { SortProvider } from "./components/MainPage/TopAPPBar/ModalSort/SortContext";
+import { SortProvider } from "./contexts/SortContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router";
 import Details from "./components/Details/Details";
-import { UsersProvider } from "./components/MainPage/usersContext";
+import { UsersProvider } from "./contexts/usersContext";
 import NetworkStatus from "./components/NetworkStatus/NetworkStatus";
+import { useTheme } from "./contexts/ThemeContext";
+import { useEffect } from "react";
 
 function App() {
+  const { theme, toggleTheme } = useTheme();
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
+
   return (
   <UsersProvider>
     <SortProvider>

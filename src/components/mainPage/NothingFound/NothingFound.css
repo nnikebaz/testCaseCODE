@@ -16,10 +16,12 @@
   margin-bottom: 1.2rem;
   font-weight: var(--font-weight-semibold);
   font-size: calc(var(--font-size-profile-name) + 1px);
+  color: var(--color-fullname);
 }
 
 .NothingFound p:nth-child(3) {
   font-weight: var(--font-weight-regular);
   font-size: var(--font-size-profile-name);
+  color: var(--color-tabs);
 }
 

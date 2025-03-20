@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Details.css";
 import { useLocation, useNavigate } from "react-router";
-import { useUsersContext } from "../MainPage/usersContext";
+import { useUsersContext } from "../../contexts/usersContext";
 import phoneIcon from "/phone.svg";
 import starIcon from "/star.svg";
 import BackButton from "../UI/Buttons/BackButton/BackButton";

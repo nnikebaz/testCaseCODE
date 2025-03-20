@@ -19,8 +19,6 @@ const TopAPPBar: React.FC<Props> = ({activeTab, onTabChange, onSearchChange}) =>
     onTabChange(tab);
   };
 
-
-
   return (
     <div className="TopAPPBar">
       <ModalSort activeMenu={activeMenu} setActiveMenu={setActiveMenu}/>

@@ -63,6 +63,7 @@ const Details: React.FC = () => {
             timeout: 3000,
           });
           setAvatarLoading(false)
+          return response.data
         } catch (error) {
             if (axios.isAxiosError(error)) {
               if (error.code === "ECONNABORTED") {

@@ -30,7 +30,7 @@ export const UsersProvider = ({children}: {children: ReactNode}) => {
   const [loading, setLoading] = useState<boolean>(true)
   const [isError, setIsError] = useState<boolean>(false)
   const [stateProfiles, setStateProfiles] = useState<Profile[]>([])
-  const test500 = 'https://stoplight.io/mocks/kode-frontend-team/koder-stoplight/86566464/users?__code=500&__dynamic=true'
+  // const test500 = 'https://stoplight.io/mocks/kode-frontend-team/koder-stoplight/86566464/users?__code=500&__dynamic=true'
 
   const getUsersData = useCallback(async (example: string) => {
     const cacheKey = `users_${example}`;

@@ -1,18 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Details.css";
 import { useLocation, useNavigate } from "react-router";
 import { useUsersContext } from "../MainPage/usersContext";
 import phoneIcon from "/phone.svg";
 import starIcon from "/star.svg";
 import BackButton from "../UI/Buttons/BackButton/BackButton";
+import CriticalError from "../CriticalError/CriticalError";
+import axios from "axios";
+import goose from '/goose.png'
+import SkeletonDetailsImg from "../UI/Skeletons/SkeletonsDetails/SkeletonDetailsImg/SkeletonDetailsImg";
 
 const Details: React.FC = () => {
+  const [avatarLoading, setAvatarLoading] = useState<boolean>(true)
+  const [avatarIsError, setAvatarIsError] = useState<boolean>(false)
+  
   const location = useLocation();
   const navigate = useNavigate();
   const parameters = new URLSearchParams(location.search);
   const profileId = parameters.get("id");
 
-  const { stateProfiles, getUsersData, loading } = useUsersContext();
+  const { stateProfiles, getUsersData, loading, isError} = useUsersContext();
   useEffect(() => {
     if (stateProfiles.length === 0 && loading) {
       getUsersData("all");
@@ -27,9 +34,7 @@ const Details: React.FC = () => {
   const position = profileData ? profileData.position : "";
   const birthday = profileData ? profileData.birthday : "";
   const date = new Date();
-  const years =
-    new Date(date.getTime() - new Date(birthday).getTime()).getUTCFullYear() -
-    1970;
+  const years = new Date(date.getTime() - new Date(birthday).getTime()).getUTCFullYear() - 1970;
   const yearsToRender = (years: number) => {
     const lastDigit = years % 10;
     const lastTwoDigits = years % 100;
@@ -46,6 +51,34 @@ const Details: React.FC = () => {
       return `${years} лет`;
     }
   };
+
+  useEffect(() => {
+    if (profileData?.avatarUrl) {
+      const fetchAvatar = async () => {
+        try {
+          const response = await axios.get(profileData.avatarUrl, {
+            timeout: 3000,
+          });
+          setAvatarLoading(false)
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+              if (error.code === "ECONNABORTED") {
+                console.log('Запрос превысил ожидание');
+                setAvatarLoading(false)
+                setAvatarIsError(true)
+              } else {
+                console.error('Ошибка при запросе изображения', error.message)
+                setAvatarLoading(false)
+              }
+            } else {
+              console.error('Неизвестная ошибка при запросе изображения: ', error);
+              setAvatarLoading(false)
+            }
+        }
+      }
+      fetchAvatar()
+    }
+  }, [profileData?.avatarUrl, setAvatarLoading, setAvatarIsError])
 
   const birthDateToRender = new Date(birthday)
     .toLocaleDateString("ru-RU", {
@@ -78,6 +111,8 @@ const Details: React.FC = () => {
   };
 
   return (
+    isError ? 
+    <CriticalError/> :
     <div className="Details">
       {profileData && (
         <div className="Details__wrapper">
@@ -85,11 +120,14 @@ const Details: React.FC = () => {
             <div className="Details__button-wrapper">
               <BackButton onBackButtonClick={handleOnBackButtonClick} />
             </div>
+            {avatarLoading ? 
+            <SkeletonDetailsImg/> :
             <img
-              className="info__img"
-              src={profileData.avatarUrl}
-              alt={`Фотография ${fullName}`}
+            className="info__img"
+            src={avatarIsError ? goose : profileData.avatarUrl}
+            alt={`Фотография ${fullName}`}
             />
+            }
             <div className="info__header">
               <div className="info__name">{fullName}</div>
               <div className="info__tag">{userTag}</div>

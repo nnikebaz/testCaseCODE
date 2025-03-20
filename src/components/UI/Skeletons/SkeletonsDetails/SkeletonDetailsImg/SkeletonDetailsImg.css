@@ -1,0 +1,7 @@
+.SkeletonDetailsImg {
+  border-radius: 100%;
+  background: var(--gradient-skeleton);
+  width: 104px;
+  margin-bottom: 2.4rem;
+  aspect-ratio: 1 / 1;
+}

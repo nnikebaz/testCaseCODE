@@ -4,9 +4,8 @@ import { Profile } from "./MainPage";
 
 interface UsersContextType {
   loading: boolean;
-  setLoading: (value: boolean) => void;
   stateProfiles: Profile[];
-  setStateProfiles: (value: Profile[]) => void;
+  isError: boolean;
   getUsersData: (example: string) => Promise<UserResponse | null>
 }
 
@@ -26,7 +25,9 @@ export const useUsersContext = () => {
 
 export const UsersProvider = ({children}: {children: ReactNode}) => {
   const [loading, setLoading] = useState<boolean>(true)
+  const [isError, setIsError] = useState<boolean>(false)
   const [stateProfiles, setStateProfiles] = useState<Profile[]>([])
+  const test500 = 'https://stoplight.io/mocks/kode-frontend-team/koder-stoplight/86566464/users?__code=500&__dynamic=true'
 
   const getUsersData = useCallback(async (example: string) => {
     try {
@@ -38,6 +39,7 @@ export const UsersProvider = ({children}: {children: ReactNode}) => {
       return response.data;
     } catch (error) {
       console.error("Ошибка при запросе", error);
+      setIsError(true)
       return null;
     } 
     finally {
@@ -46,7 +48,7 @@ export const UsersProvider = ({children}: {children: ReactNode}) => {
   }, [setLoading, setStateProfiles]); 
 
   return (
-    <UsersContext.Provider value={{ loading, setLoading, stateProfiles, setStateProfiles, getUsersData}}>
+    <UsersContext.Provider value={{ loading, stateProfiles, isError, getUsersData}}>
       {children}
     </UsersContext.Provider>
   );

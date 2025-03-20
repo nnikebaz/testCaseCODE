@@ -6,6 +6,7 @@ import { tabs } from "./TopAPPBar/tabsData";
 import { useSort } from "./TopAPPBar/ModalSort/SortContext";
 import debounce from "lodash.debounce"
 import { useUsersContext } from "./usersContext";
+import CriticalError from "../CriticalError/CriticalError";
 
 export interface Profile {
   avatarUrl: string;
@@ -25,7 +26,7 @@ const MainPage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>('')
   const {sortTerm} = useSort()
   const nextYearBirthday: Profile[] = []
-  const {stateProfiles, getUsersData} = useUsersContext()
+  const {stateProfiles, getUsersData, isError} = useUsersContext()
   
   // полезности
   const today = new Date()
@@ -100,6 +101,8 @@ const MainPage: React.FC = () => {
   const dataToRender = sorting((searchTerm.length > 0 ? filteredProfiles : stateProfiles), sortTerm);
 
   return (
+    isError ?
+    <CriticalError/> :
     <div className="MainPage">
       <TopAPPBar activeTab={activeTab} onTabChange={handleTabChange} onSearchChange={handleSearchChange}/>
       {/* {loading && <img src="./ios-spinner.min.svg"></img>} */}

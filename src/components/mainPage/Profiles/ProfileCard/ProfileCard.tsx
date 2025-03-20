@@ -45,10 +45,12 @@ const ProfileCard: React.FC<Props> = ({ profile, handleClickNavigate }) => {
               } else {
                 console.error('Ошибка при запросе изображения', error.message)
                 setAvatarLoading(false)
+                setAvatarIsError(true)
               }
             } else {
               console.error('Неизвестная ошибка при запросе изображения: ', error);
               setAvatarLoading(false)
+              setAvatarIsError(true)
             }
         }
       }

@@ -7,6 +7,7 @@ import { useSort } from "./TopAPPBar/ModalSort/SortContext";
 import debounce from "lodash.debounce"
 import { useUsersContext } from "./usersContext";
 import CriticalError from "../CriticalError/CriticalError";
+import NetworkStatus from "../NetworkStatus/NetworkStatus";
 
 export interface Profile {
   avatarUrl: string;
@@ -101,13 +102,17 @@ const MainPage: React.FC = () => {
   const dataToRender = sorting((searchTerm.length > 0 ? filteredProfiles : stateProfiles), sortTerm);
 
   return (
-    isError ?
+    <>
+    <NetworkStatus/>
+    {isError ?
     <CriticalError/> :
-    <div className="MainPage">
-      <TopAPPBar activeTab={activeTab} onTabChange={handleTabChange} onSearchChange={handleSearchChange}/>
-      {/* {loading && <img src="./ios-spinner.min.svg"></img>} */}
-      <Profiles searchTerm={searchTerm} dataToRender={dataToRender} nextYearBirthday={sortingByBirthday(nextYearBirthday)}/>
-    </div>
+      <div className="MainPage">
+        <TopAPPBar activeTab={activeTab} onTabChange={handleTabChange} onSearchChange={handleSearchChange}/>
+        <Profiles searchTerm={searchTerm} dataToRender={dataToRender} nextYearBirthday={sortingByBirthday(nextYearBirthday)}/>
+      </div>
+    }
+    </>
+   
   );
 };
 

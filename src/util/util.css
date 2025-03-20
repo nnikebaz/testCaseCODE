@@ -1,0 +1,11 @@
+@media screen and (max-width: 460px) {
+  .mobile-break {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 461px ){
+  .mobile-break {
+    display: none;
+  }
+}

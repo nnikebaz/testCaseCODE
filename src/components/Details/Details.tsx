@@ -9,11 +9,12 @@ import CriticalError from "../CriticalError/CriticalError";
 import axios from "axios";
 import goose from '/goose.png'
 import SkeletonDetailsImg from "../UI/Skeletons/SkeletonsDetails/SkeletonDetailsImg/SkeletonDetailsImg";
+import NetworkStatus from "../NetworkStatus/NetworkStatus";
 
 const Details: React.FC = () => {
   const [avatarLoading, setAvatarLoading] = useState<boolean>(true)
   const [avatarIsError, setAvatarIsError] = useState<boolean>(false)
-  
+
   const location = useLocation();
   const navigate = useNavigate();
   const parameters = new URLSearchParams(location.search);
@@ -69,10 +70,12 @@ const Details: React.FC = () => {
               } else {
                 console.error('Ошибка при запросе изображения', error.message)
                 setAvatarLoading(false)
+                setAvatarIsError(true)
               }
             } else {
               console.error('Неизвестная ошибка при запросе изображения: ', error);
               setAvatarLoading(false)
+              setAvatarIsError(true)
             }
         }
       }
@@ -111,61 +114,66 @@ const Details: React.FC = () => {
   };
 
   return (
-    isError ? 
-    <CriticalError/> :
-    <div className="Details">
-      {profileData && (
-        <div className="Details__wrapper">
-          <div className="info">
-            <div className="Details__button-wrapper">
-              <BackButton onBackButtonClick={handleOnBackButtonClick} />
-            </div>
-            {avatarLoading ? 
-            <SkeletonDetailsImg/> :
-            <img
-            className="info__img"
-            src={avatarIsError ? goose : profileData.avatarUrl}
-            alt={`Фотография ${fullName}`}
-            />
-            }
-            <div className="info__header">
-              <div className="info__name">{fullName}</div>
-              <div className="info__tag">{userTag}</div>
-            </div>
-            <div className="info__position">{position}</div>
-          </div>
-          <div className="contacts">
-            {contactsItems.map((item, index) => {
-              const isLink = item.type === "phone" && item.value;
-              const Wrapper = isLink ? "a" : "div";
-              return (
-                <Wrapper
-                  className={item.type === 'phone' ? "contacts__item phone" : "contacts__item"}
-                  key={index}
-                  {...(isLink ? {href: `tel:${item.value}`} : {})}
-                >
-                  <div className="contacts__flexbox">
-                    <img src={item.icon} alt={item.altIcon} />
-                    {item.type === "birthday" ? (
-                      <div className="contacts__birthday">
-                        {birthDateToRender}
+    <>
+      <NetworkStatus/>
+      {
+        isError ? 
+        <CriticalError/> :
+        <div className="Details">
+          {profileData && (
+            <div className="Details__wrapper">
+              <div className="info">
+                <div className="Details__button-wrapper">
+                  <BackButton onBackButtonClick={handleOnBackButtonClick} />
+                </div>
+                {avatarLoading ? 
+                <SkeletonDetailsImg/> :
+                <img
+                className="info__img"
+                src={avatarIsError ? goose : profileData.avatarUrl}
+                alt={`Фотография ${fullName}`}
+                />
+                }
+                <div className="info__header">
+                  <div className="info__name">{fullName}</div>
+                  <div className="info__tag">{userTag}</div>
+                </div>
+                <div className="info__position">{position}</div>
+              </div>
+              <div className="contacts">
+                {contactsItems.map((item, index) => {
+                  const isLink = item.type === "phone" && item.value;
+                  const Wrapper = isLink ? "a" : "div";
+                  return (
+                    <Wrapper
+                      className={item.type === 'phone' ? "contacts__item phone" : "contacts__item"}
+                      key={index}
+                      {...(isLink ? {href: `tel:${item.value}`} : {})}
+                    >
+                      <div className="contacts__flexbox">
+                        <img src={item.icon} alt={item.altIcon} />
+                        {item.type === "birthday" ? (
+                          <div className="contacts__birthday">
+                            {birthDateToRender}
+                          </div>
+                        ) : (
+                          <div className="contacts__value">{item.value}</div>
+                        )}
                       </div>
-                    ) : (
-                      <div className="contacts__value">{item.value}</div>
-                    )}
-                  </div>
-                  {item.type === "birthday" ? (
-                    <div className="contacts__years">{item.years}</div>
-                  ) : (
-                    ""
-                  )}
-                </Wrapper>
-              );
-            })}
-          </div>
+                      {item.type === "birthday" ? (
+                        <div className="contacts__years">{item.years}</div>
+                      ) : (
+                        ""
+                      )}
+                    </Wrapper>
+                  );
+                })}
+              </div>
+            </div>
+          )}
         </div>
-      )}
-    </div>
+      }
+    </>
   );
 };
 

@@ -13,10 +13,38 @@ const resources = {
       tabs: {
         all: 'All',
         design: 'Design',
-        bo: 'Back-office',
+        frontend: 'Frontend',
+        backend: 'Backend',
+        ios: 'iOS',
+        android: 'Android',
+        qa: 'QA',
+        hr: 'HR',
+        pr: 'PR',
+        back_office: 'Back-office',
         analytics: 'Analytics',
         management: 'Management',
-        techSupport: 'Tech support'
+        support: 'Tech support'
+      },
+      years: {
+        год: 'years',
+        года: 'years',
+        лет: 'years,'
+      },
+      networks: {
+        offline: {
+          first: "Can't update the data.",
+          second: 'Check your internet connection.'
+        },
+        loading: 'Just a second, loading...'
+      },
+      nothingFound: {
+        first: "We didn't find anyone",
+        second: 'Try adjusting the query'
+      },
+      criticalError: {
+        title: 'Some super-intelligence broke everything',
+        description: "We'll try to get this fixed quickly",
+        link: 'Try again',
       },
       welcome: 'Welcome',
       changeLanguage: 'Change Language'
@@ -33,10 +61,38 @@ const resources = {
       tabs: {
         all: 'Все',
         design: 'Дизайн',
-        bo: 'Бэк-офис',
+        frontend: 'Frontend',
+        backend: 'Backend',
+        ios: 'iOS',
+        android: 'Android',
+        qa: 'QA',
+        hr: 'HR',
+        pr: 'PR',
+        back_office: 'Бэк-офис',
         analytics: 'Аналитика',
         management: 'Менеджмент',
-        techSupport: 'Техподдержка'
+        support: 'Техподдержка'
+      },
+      years: {
+        год: 'год',
+        года: 'года',
+        лет: 'лет,'
+      },
+      networks: {
+        offline: {
+          first: "Не могу обновить данные.",
+          second: 'Проверь соединение с интернетом.'
+        },
+        loading: 'Секундочку, гружусь...'
+      },
+      nothingFound: {
+        first: 'Мы никого не нашли',
+        second: 'Попробуйте скорректировать запрос'
+      },
+      criticalError: {
+        title: 'Какой-то сверхразум всё сломал',
+        description: 'Постараемся быстро всё починить',
+        link: 'Попробовать снова',
       },
       welcome: 'Добро пожаловать',
       changeLanguage: 'Сменить язык'

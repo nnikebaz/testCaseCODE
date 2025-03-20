@@ -1,5 +1,5 @@
 .MainPage {
   z-index: 5;
   width: 100%;
-  padding: var(--padding-all-side);
+  padding: 8rem 2rem 4rem 2rem;
 }

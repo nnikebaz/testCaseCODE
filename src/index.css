@@ -76,6 +76,9 @@ body {
   --color-birthday-light: #55555C;
   --color-birthday-dark: #c3c3c9;;
 
+  --color-language-light: #fff;
+  --color-language-dark: #363636;
+
   --color-offline-text: #fff;
 
   --bg-color-dark: #363636;
@@ -88,8 +91,7 @@ body {
   --gradient-skeleton: linear-gradient(90deg, #F3F3F6 0%, #FAFAFA 100%);
 
   --padding-side: 0 2rem;
-  --padding-all-side: 2rem 2rem 4rem 2rem;
-  
+
 }
 
 
@@ -99,6 +101,7 @@ body {
   --color-active-tab: var(--color-active-tab-light);
   --color-fullname: var(--color-fullname-light);
   --color-position: var(--color-position-light);
+  --color-language: var(--color-language-light);
   --bg-color-info: var(--bg-color-info-light);
   --color-birthday: var(--color-birthday-light);
   --bg-color-language: var(--bg-color-dark);
@@ -110,6 +113,7 @@ body {
   --color-active-tab: var(--color-active-tab-dark);
   --color-fullname: var(--color-fullname-dark);
   --color-position: var(--color-position-dark);
+  --color-language: var(--color-language-dark);
   --bg-color-info: var(--bg-color-info-dark);
   --color-birthday: var(--color-birthday-dark);
   --bg-color-language: var(--bg-color-light);

@@ -45,7 +45,7 @@ const TopAPPBar: React.FC<Props> = ({activeTab, onTabChange, onSearchChange}) =>
       </div>
       <li className="tabs">
         {Object.keys(tabs).map((tab, index) => {
-          return <ul key={index} onClick={() => handleTabClick(tab)} className={activeTab === tab ? 'tab active' : 'tab'}>{tab}</ul>;
+          return <ul key={index} onClick={() => handleTabClick(tab)} className={activeTab === tab ? 'tab active' : 'tab'}>{t(`tabs.${tabs[tab]}`)}</ul>;
         })}
       </li>
       <hr />

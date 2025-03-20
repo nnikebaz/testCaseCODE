@@ -10,15 +10,13 @@ const LanguageToggle:React.FC = () => {
     localStorage.setItem('language', newLanguage)
   } 
 
-
   useEffect(() => {
     const savedLanguage = localStorage.getItem('language');
-    console.log(localStorage)
+
     if (savedLanguage) {
       i18n.changeLanguage(savedLanguage);
     } else {
       const defaultLanguage = navigator.language.split('-')[0]
-      console.log(defaultLanguage)
       const supportedLanguages = ['en', 'ru']
       if (supportedLanguages.includes(defaultLanguage)) {
         i18n.changeLanguage(defaultLanguage)

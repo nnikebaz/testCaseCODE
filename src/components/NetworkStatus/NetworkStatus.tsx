@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 import './NetworkStatus.css'
-import { Offline, Online } from 'react-detect-offline'
-import { useUsersContext } from '../../contexts/usersContext'
+import { useTranslation } from 'react-i18next'
 
 const NetworkStatus:React.FC = () => {
   const [isOnline, setIsOnline] = useState(navigator.onLine)
   const [offlineFlag, setOfflineFlag] = useState<boolean>(false)
-  const {loading} = useUsersContext()
+
+  const {t} = useTranslation()
 
   useEffect(() => {
     const handleOnline = () => {
@@ -32,11 +32,11 @@ const NetworkStatus:React.FC = () => {
   return (
     isOnline && offlineFlag ? (
       <div className='NetworkStatus__loading'>
-        <p>Секундочку, гружусь...</p>
+        <p>{t('networks.loading')}</p>
       </div>
     ) : !isOnline ? (
       <div className='NetworkStatus__offline'>
-        <p>Не могу обновить данные. <br className='mobile-break'></br>Проверь соединение с интернетом.</p>
+        <p>{t('networks.offline.first')}<br className='mobile-break'></br>{t('networks.offline.second')}</p>
       </div>
     ) : <></>
   )

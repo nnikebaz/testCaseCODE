@@ -1,4 +1,7 @@
 .Sidebar {
+  z-index: 10000;
+  position: absolute;
+  right: 0;
   display: flex;
   justify-content: end;
   gap: 1rem;

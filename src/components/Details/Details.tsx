@@ -10,6 +10,7 @@ import axios from "axios";
 import goose from '/goose.png'
 import SkeletonDetailsImg from "../UI/Skeletons/SkeletonsDetails/SkeletonDetailsImg/SkeletonDetailsImg";
 import NetworkStatus from "../NetworkStatus/NetworkStatus";
+import { useTranslation } from "react-i18next";
 
 const Details: React.FC = () => {
   const [avatarLoading, setAvatarLoading] = useState<boolean>(true)
@@ -36,20 +37,21 @@ const Details: React.FC = () => {
   const birthday = profileData ? profileData.birthday : "";
   const date = new Date();
   const years = new Date(date.getTime() - new Date(birthday).getTime()).getUTCFullYear() - 1970;
+  const {t, i18n} = useTranslation()
   const yearsToRender = (years: number) => {
     const lastDigit = years % 10;
     const lastTwoDigits = years % 100;
 
     if (lastDigit === 1 && lastTwoDigits !== 11) {
-      return `${years} год`;
+      return `${years} ${t('years.год')}`;
     } else if (
       lastDigit >= 2 &&
       lastDigit <= 4 &&
       (lastTwoDigits < 10 || lastTwoDigits >= 20)
     ) {
-      return `${years} года`;
+      return `${years} ${t('years.года')}`;
     } else {
-      return `${years} лет`;
+      return `${years} ${t('years.лет')}`;
     }
   };
 
@@ -83,13 +85,20 @@ const Details: React.FC = () => {
     }
   }, [profileData?.avatarUrl, setAvatarLoading, setAvatarIsError])
 
-  const birthDateToRender = new Date(birthday)
+  const birthDateToRenderRu = new Date(birthday)
     .toLocaleDateString("ru-RU", {
       day: "numeric",
       month: "long",
       year: "numeric",
     })
     .slice(0, -3);
+
+    const birthDateToRenderEn = new Date(birthday)
+    .toLocaleDateString("en-EN", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    })
 
   const contactsItems = profileData
     ? [
@@ -154,7 +163,7 @@ const Details: React.FC = () => {
                         <img src={item.icon} alt={item.altIcon} />
                         {item.type === "birthday" ? (
                           <div className="contacts__birthday">
-                            {birthDateToRender}
+                            {i18n.language === 'ru' ? birthDateToRenderRu : birthDateToRenderEn}
                           </div>
                         ) : (
                           <div className="contacts__value">{item.value}</div>

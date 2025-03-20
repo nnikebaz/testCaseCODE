@@ -1,0 +1,43 @@
+@keyframes pulse {
+  0% {
+    opacity: 50%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+.SkeletonProfileCard {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  animation: pulse .6s infinite ease-in-out;
+  margin-bottom: 2.4rem;
+}
+
+.SkeletonProfileCard__img {
+  border-radius: 100%;
+  background: var(--gradient-skeleton);
+  width: 72px;
+  aspect-ratio: 1 / 1;
+}
+
+.SkeletonProfileCard__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+}
+
+.SkeletonProfileCard__top-row {
+  width: 14.4rem;
+  height: 1.6rem;
+  border-radius: 5rem;
+  background: var(--gradient-skeleton);
+}
+
+.SkeletonProfileCard__bottom-row {
+  width: 8rem;
+  height: 1.4rem;
+  border-radius: 5rem;
+  background: var(--gradient-skeleton);
+}

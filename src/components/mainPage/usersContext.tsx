@@ -25,7 +25,7 @@ export const useUsersContext = () => {
 }
 
 export const UsersProvider = ({children}: {children: ReactNode}) => {
-  const [loading, setLoading] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(true)
   const [stateProfiles, setStateProfiles] = useState<Profile[]>([])
 
   const getUsersData = useCallback(async (example: string) => {

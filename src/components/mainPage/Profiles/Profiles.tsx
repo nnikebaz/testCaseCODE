@@ -3,6 +3,8 @@ import { Profile } from "../MainPage";
 import NothingFound from "../NothingFound/NothingFound";
 import ProfileCard from "./ProfileCard/ProfileCard";
 import { useNavigate } from "react-router";
+import { useUsersContext } from "../usersContext";
+import SkeletonProfileCard from "../../UI/Skeletons/SkeletonProfileCard/SkeletonProfileCard";
 
 interface Props {
   searchTerm: string;
@@ -15,8 +17,12 @@ const Profiles: React.FC<Props> = ({ searchTerm, dataToRender, nextYearBirthday}
   const handleClickNavigate = (profileId: string) => {
     navigate(`/details?id=${profileId}`)
   }
+  const {loading} = useUsersContext()
+  const skeletonCount = 11
 
   return (
+    loading ? 
+    Array.from({length: skeletonCount}).map((_, index) => (<SkeletonProfileCard key={index}/>)) :
     <div className="Profiles">
       {dataToRender.length > 0 || nextYearBirthday.length > 0 ? (
         dataToRender.map((profile, index) => {
@@ -38,7 +44,6 @@ const Profiles: React.FC<Props> = ({ searchTerm, dataToRender, nextYearBirthday}
         </>
       ) : null}
     </div>
-
   );
 };
 

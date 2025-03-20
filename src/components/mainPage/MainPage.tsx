@@ -25,7 +25,7 @@ const MainPage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>('')
   const {sortTerm} = useSort()
   const nextYearBirthday: Profile[] = []
-  const {loading, stateProfiles, getUsersData} = useUsersContext()
+  const {stateProfiles, getUsersData} = useUsersContext()
   
   // полезности
   const today = new Date()
@@ -69,7 +69,7 @@ const MainPage: React.FC = () => {
     const phone = `${profile.phone}`
     const tag = `${profile.userTag}`
 
-    return fullname.toLowerCase().includes(searchTerm.toLowerCase()) || phone.includes(searchTerm) || tag.toLowerCase().includes(searchTerm)
+    return fullname.toLowerCase().includes(searchTerm.toLowerCase()) || phone.includes(searchTerm.toLowerCase()) || tag.includes(searchTerm.toLowerCase())
   })
 
   const sorting = (profiles: Profile[], sortType:string) => {
@@ -98,12 +98,11 @@ const MainPage: React.FC = () => {
   }
   
   const dataToRender = sorting((searchTerm.length > 0 ? filteredProfiles : stateProfiles), sortTerm);
-  console.log(dataToRender)
 
   return (
     <div className="MainPage">
       <TopAPPBar activeTab={activeTab} onTabChange={handleTabChange} onSearchChange={handleSearchChange}/>
-      {loading && <img src="./ios-spinner.min.svg"></img>}
+      {/* {loading && <img src="./ios-spinner.min.svg"></img>} */}
       <Profiles searchTerm={searchTerm} dataToRender={dataToRender} nextYearBirthday={sortingByBirthday(nextYearBirthday)}/>
     </div>
   );

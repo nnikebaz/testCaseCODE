@@ -12,6 +12,10 @@ input:focus-visible {
   outline: unset;
 }
 
+a {
+  text-decoration: unset;
+}
+
 ul {
   padding-inline-start: unset;
   margin: unset;
@@ -52,9 +56,11 @@ body {
   --color-position: #55555C;
   --color-fullname: #050510;
   --color-birthday: #55555C;
+  --gradient-skeleton: linear-gradient(90deg, #F3F3F6 0%, #FAFAFA 100%);
   --bg-color-light: #fff;
   --bg-color-light-info: #F7F7F8;
   --padding-side: 0 2rem;
   --padding-all-side: 4rem 2rem;
+  
 }
 

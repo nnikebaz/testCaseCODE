@@ -6,16 +6,12 @@ import phoneIcon from "/phone.svg";
 import starIcon from "/star.svg";
 import BackButton from "../UI/Buttons/BackButton/BackButton";
 import CriticalError from "../CriticalError/CriticalError";
-import axios from "axios";
 import goose from '/goose.png'
 import SkeletonDetailsImg from "../UI/Skeletons/SkeletonsDetails/SkeletonDetailsImg/SkeletonDetailsImg";
 import NetworkStatus from "../NetworkStatus/NetworkStatus";
 import { useTranslation } from "react-i18next";
 
 const Details: React.FC = () => {
-  const [avatarLoading, setAvatarLoading] = useState<boolean>(true)
-  const [avatarIsError, setAvatarIsError] = useState<boolean>(false)
-
   const location = useLocation();
   const navigate = useNavigate();
   const parameters = new URLSearchParams(location.search);
@@ -32,6 +28,7 @@ const Details: React.FC = () => {
   const fullName = profileData
     ? profileData.firstName + " " + profileData.lastName
     : "";
+  const avatar = profileData ? profileData.avatarUrl : '';
   const userTag = profileData ? profileData.userTag : "";
   const position = profileData ? profileData.position : "";
   const birthday = profileData ? profileData.birthday : "";
@@ -54,37 +51,6 @@ const Details: React.FC = () => {
       return `${years} ${t('years.лет')}`;
     }
   };
-
-  useEffect(() => {
-    if (profileData?.avatarUrl) {
-      const fetchAvatar = async () => {
-        try {
-          const response = await axios.get(profileData.avatarUrl, {
-            timeout: 3000,
-          });
-          setAvatarLoading(false)
-          return response.data
-        } catch (error) {
-            if (axios.isAxiosError(error)) {
-              if (error.code === "ECONNABORTED") {
-                console.log('Запрос превысил ожидание');
-                setAvatarLoading(false)
-                setAvatarIsError(true)
-              } else {
-                console.error('Ошибка при запросе изображения', error.message)
-                setAvatarLoading(false)
-                setAvatarIsError(true)
-              }
-            } else {
-              console.error('Неизвестная ошибка при запросе изображения: ', error);
-              setAvatarLoading(false)
-              setAvatarIsError(true)
-            }
-        }
-      }
-      fetchAvatar()
-    }
-  }, [profileData?.avatarUrl, setAvatarLoading, setAvatarIsError])
 
   const birthDateToRenderRu = new Date(birthday)
     .toLocaleDateString("ru-RU", {
@@ -136,14 +102,11 @@ const Details: React.FC = () => {
                 <div className="Details__button-wrapper">
                   <BackButton onBackButtonClick={handleOnBackButtonClick} />
                 </div>
-                {avatarLoading ? 
-                <SkeletonDetailsImg/> :
                 <img
                 className="info__img"
-                src={avatarIsError ? goose : profileData.avatarUrl}
+                src={avatar}
                 alt={`Фотография ${fullName}`}
                 />
-                }
                 <div className="info__header">
                   <div className="info__name">{fullName}</div>
                   <div className="info__tag">{userTag}</div>
